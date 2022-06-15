@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
     <script defer src="https://kit.fontawesome.com/fe5f4d9a0a.js" crossorigin="anonymous"></script>
+    <script>
+      <%= if @conn.assigns.user do %>
+        window.userToken = "<%= Phoenix.Token.sign(Discuss.Endpoint, "key", @conn.assigns.user.id) %>"
+      <% end %>
+    </script>
   </head>
   <body>
     <%= @inner_content %>
